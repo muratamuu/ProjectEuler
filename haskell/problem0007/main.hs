@@ -3,13 +3,14 @@ main = print . primeOf $ 10001
 
 isPrime :: Int -> Bool
 isPrime x | x < 2 = False
-isPrime x = _isPrime x y
+isPrime x = _isPrimeT x 2 max
   where
-    y = floor . sqrt . fromIntegral $ x
+    max  = floor . sqrt . fromIntegral $ x
 
-_isPrime :: Int -> Int -> Bool
-_isPrime x 1 = True
-_isPrime x y = if x `mod` y == 0 then False else _isPrime x (y - 1)
+_isPrimeT :: Int -> Int -> Int -> Bool
+_isPrimeT x y max | y > max        = True
+_isPrimeT x y max | x `mod` y == 0 = False
+_isPrimeT x y max                  = _isPrimeT x (y + 1) max
 
 primes :: [Int]
 primes = filter isPrime [2..]
