@@ -1,26 +1,19 @@
 fn main() {
     let max = 4000000;
     let mut count = 0;
-    let mut n = 0;
+    let mut a = 1;
+    let mut b = 2;
     loop {
-        let x = fib(n);
-        if x > max {
+        let c = a + b;
+        a = b;
+        b = c;
+        if b > max {
             break;
         }
-        if x % 2 == 0 {
-            count += x;
+        if b % 2 == 0 {
+            count += b;
         }
-        n += 1;
     }
     println!("{}", count);
 }
 
-fn fib(n: u32) -> u32 {
-    if n == 0 {
-        1
-    } else if n == 1 {
-        2
-    } else {
-        fib(n - 2) + fib(n - 1)
-    }
-}
